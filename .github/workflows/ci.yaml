@@ -1,0 +1,9 @@
+name: Hello
+on: [push]
+jobs:
+  hello:
+    name: Hello
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet the user
+        run: echo "Hello, ${{github.actor}}!"
