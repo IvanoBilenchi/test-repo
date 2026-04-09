@@ -1,9 +1,18 @@
-name: Hello
+name: Build and test
 on: [push]
 jobs:
-  hello:
-    name: Hello
+  test:
+    name: Build and test
     runs-on: ubuntu-latest
     steps:
-      - name: Greet the user
-        run: echo "Hello, ${{github.actor}}!"
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Create venv
+        run: python -m venv venv
+
+      - name: Test
+        run: |
+          source venv/bin/activate
+          pip install -e .
+          python -m unittest discover -s tests
